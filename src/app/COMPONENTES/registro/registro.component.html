@@ -1,0 +1,433 @@
+<!--INICIO DE FORMULARIO NUEVA PERSONA-->
+<ng-template #BuscarPersona let-modal>
+    <div class="modal-header"><!--Encabezado de pagina-->
+      <h4 class="modal-title">Buscar Persona</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><!--Fin encabezado de pagina-->
+    <div class="modal-body"><!--Cuerpo de pagina-->
+    <!--
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+    -->
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+      
+      <p>Registro Institucion&hellip;</p>
+  
+      <div class="mb-3">
+        <label class="form-label">Nombre de Institucion</label>
+        <input  type="text" [(ngModel)]="personal.nombre" class="form-control" name="nombre">
+    </div>
+
+    <div class="col-sm-6">
+      <div class="col-sm-6">
+          <form>
+              <div class="mb-3">
+                  <label class="form-label">{{personal.descripcion}}</label>
+              </div>           
+          </form>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label for="estado" class="col-sm-6 control-label">Tipo de Institucion</label>
+        <div class="col-sm-8">
+         <select class="form-control" id="id_tipo_institucion" name="id_tipo_institucion">
+            <!--<option selected>Seleccione.....</option>-->
+            <option *ngFor="let tipos of tipo" [value]="tipos.id_tipo_institucion" >{{tipos.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+  
+    <div class="modal-footer"><!--pie de pagina-->
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+      <button type="button" (click)="agregar()" class="btn btn-primary">REGISTRAR</button>
+    </div><!--Fin pie de pagina-->
+  </form>  
+  </div>
+</ng-template>
+<!--FIN DE FORMULARIO NUEVA PERSONA-->
+
+
+     
+  <!--INICIO DE FORMULARIO NUEVA PERSONA-->
+<ng-template #BuscarPersonas let-modal>
+  <form>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+ 
+      <div class="card">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <!--
+              <th scope="col">#</th>
+              <th scope="col" sortable="username" (sort)="onSort($event)">Country</th>
+              <th scope="col" sortable="password" (sort)="onSort($event)">Area</th>
+              <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Population</th>
+              -->        
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of personass | async">
+              <th scope="row">{{ country.id_persona }}</th>
+              <td>
+                <!--
+                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+                -->  
+                <ngb-highlight [result]="country.id_registro | number" [term]="service.searchTerm"></ngb-highlight>
+              </td>
+              
+              <td><ngb-highlight [result]="country.id_persona | number" [term]="service.searchTerm"></ngb-highlight></td>
+              <!--
+              <td><ngb-highlight [result]="country.estado_usuario | number" [term]="service.searchTerm"></ngb-highlight></td>
+              -->  
+              <td><button (click)="modificar()" type="button" class="btn btn-primary">Editar</button></td>
+              <!--
+              <td><button (click)="openXl(content)" type="button" class="btn btn-outline-primary mb-2 mr-2">Extra large modal</button></td>
+            
+              <td><button (click)="openXl(content)" type="button" class="btn btn-primary">Extra</button></td>
+                -->
+              <!--
+              <td><button (click)="eliminar(country.id)" type="button" class="btn btn-danger">Eliminar</button></td>
+              -->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination>
+            [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+          </ngb-pagination>
+  
+          <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div>
+  </form>
+  </ng-template>
+  <!--FIN DE FORMULARIO NUEVA PERSONA-->
+  
+  <!--Inicio del Modal EditarPersona -->
+  <ng-template #EditarPersona let-modal>
+      <div class="modal-header"><!--Encabezado de pagina-->
+        <h4 class="modal-title">Actualizar datos Institucion</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div><!--Fin encabezado de pagina-->
+  
+      <div class="modal-body"><!--Cuerpo de pagina-->
+      <!--
+      <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+      -->
+      <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+        
+        <p>Actualizar los datos&hellip;</p>
+        <!--
+          <div id="resultados_ajax_editar_cli"></div>
+          -->    
+          <div class="form-group">
+              <label for="nombre" class="col-sm-2 control-label">Id Institucion</label>
+              <input class="form-control" type="text" id="id_institucion" name="id_institucion" [(ngModel)]="equipos[0].id_registro" readonly>
+          </div>
+  
+          <div class="form-group">
+              <label for="nombre" class="col-sm-3 control-label">Nombre Institucion</label>
+              <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="equipos[0].id_registro">
+          </div>
+          
+          <div class="form-group">
+              <label for="nombre" class="col-sm-3 control-label">Tipo de Institucion</label>
+              <input class="form-control" type="text" id="id_tipo_institucion" name="id_tipo_institucion" [(ngModel)]="equipos[0].id_registro" readonly>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Hola Mundo</label>   
+            <label class="form-label">{{equipos[0].id_registro}}</label>   
+          </div>
+          <pre>
+            <!--
+            {{countries$ | json}}
+            -->
+          </pre>
+  
+      <div class="modal-footer"><!--pie de pagina-->
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <!--
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" id="actualizar_cliente">Guardar datos</button>
+        -->
+        <button type="button"  class="btn btn-primary" (click)="modificar()">GUARDAR</button>
+      </div><!--Fin pie de pagina-->
+      
+      </form>
+  </div>
+  </ng-template>
+  <!--Fin del Modal EditarPersona-->
+
+  <ng-template #content1 let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+        <div class="container">
+          <p>AGREGAR USUARIO</p>
+          <div class="rows">
+              <div class="col-sm-6">
+                  <form>
+                      <div class="mb-6">
+                          <label class="form-label">Nombre de Usuario</label>
+                          <input  type="text"  class="form-control" name="username">
+                      </div>
+                      <div class="mb-6">
+                          <label class="form-label">Password de Usuario</label>
+                          <input  type="text" class="form-control" name="password">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="inputState">Estado Usuario</label>
+      
+                          <select id="estado_usuario" name="estado_usuario" class="form-control">
+                            <option selected value="Activo">Activo</option>
+                            <option value="Desactivado">Desactivado</option>
+                          </select>
+                      </div>
+                      <div class="mb-6">
+                          <label class="form-label">Password de Usuario</label>
+                          <input  type="date" class="form-control" name="fecha">
+                      </div>
+                      
+                      <div class="mb-6">
+                          <label class="form-label">Seleccion un ID</label>
+                          <input type="text" class="form-control" name="id_persona_usuario">
+                      </div>
+                      
+                      <button class="btn btn-primary">AGREGAR</button>
+                  </form>
+              </div>
+          </div>
+  
+      </div>
+  
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+  </ng-template>
+
+
+  <!--###########----INICIO FORMULARIO PRINCIPAL---------########-->  
+  <div class="col-md-10 mx-auto">
+  <p>NUEVO REGISTRO DE TRAMITE </p>
+  <p>Aqui se realizara el registro de nuevo tramite:</p>
+<!--INICIO DATOS PERSONALES-->
+<div class="form-group row">
+  <ng-template #rt let-r="result" let-t="term">
+    <!--
+    <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px">
+    -->  
+  <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+  </ng-template>
+
+  <label for="typeahead-template" class="col-md-1 control-label">Nombre:</label>
+
+  <div class="col-sm-2">
+    <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt"
+    [inputFormatter]="formatterr" />
+  </div>
+
+  <div class="col-sm-1">
+    <button type="button" (click)="Buscar(BuscarPersonas)" class="btn btn-primary">BUSCAR</button>
+  </div>
+  <!--
+  <label for="typeahead-format" class="col-md-4 control-label">A. Paterno:{{model.apellido_paterno}}  A. Materno:{{model.apellido_materno}}  C.I.:{{model.documento_identidad}}</label>
+  <pre>Model: {{ model | json }}</pre>
+  -->
+  <label for="estado" class="col-md-2 control-label"><p class="text-end">Nombre Completo:</p></label>
+  <div class="col-sm-2">
+    <input  type="text" [(ngModel)]="model.apellido_paterno" class="form-control" name="apellido_paterno" readonly>
+  </div>
+
+  <div class="col-sm-2">
+    <input  type="text" [(ngModel)]="model.apellido_materno" class="form-control" name="apellido_materno" readonly>
+  </div>
+  <div class="col-sm-2">
+    <input  type="text" [(ngModel)]="model.nombre" class="form-control" name="nombre" readonly>
+  </div>
+
+</div>
+
+<br>
+
+<div class="form-group row">
+  <label for="estado" class="col-md-1 control-label">Documento I.:</label>
+    <input  type="hidden" [(ngModel)]="model.id_persona" class="form-control" name="nombre" readonly>
+  <div class="col-sm-3">
+    <input  type="text" [(ngModel)]="model.documento_identidad" class="form-control" name="documento_identidad" readonly>
+  </div>
+  <label for="estado" class="col-md-1 control-label"><p class="text-end">Teléfono:</p></label>
+  <div class="col-sm-3">
+    <input  type="text" [(ngModel)]="model.telefono" class="form-control" name="telefono" readonly>
+  </div>
+  <label for="estado" class="col-md-1 control-label"><p class="text-end">Dirección:</p></label>
+  <div class="col-sm-3">
+    <input  type="text" [(ngModel)]="model.direccion" class="form-control" name="direccion" readonly>
+  </div>
+</div>
+<br>
+<hr>
+<!--FIN DATOS PERSONALES-->
+
+
+<!--INICIO DE FECHAS-->
+<div class="form-group row">
+  <label class="col-md-2 control-label">Fecha de Inicio</label>
+  <div class="col-sm-3">
+    <input  type="date" [(ngModel)]="model.fecha_inicio" class="form-control" name="fecha_inicio">
+  </div>
+
+  <label class="col-md-2 control-label"><p class="text-end">Fecha de Final</p></label>
+  <div class="col-sm-3">
+    <input  type="date" [(ngModel)]="model.fecha_final" class="form-control" name="fecha_final">
+  </div>
+</div>
+<!--FIN DE FECHAS-->
+<hr>
+
+<div class="form-group row">
+  <label for="estado" class="col-md-1 control-label">Institucion:</label>
+  <div class="col-sm-3">
+    <select class="form-control" id="id_institucion" name="id_institucion" [(ngModel)]="model.id_institucion">
+      <!--<option selected>Seleccione.....</option>-->
+      <option *ngFor="let tipos of institucion" [value]="tipos.id_institucion" >{{tipos.nombre}}</option>
+    </select>
+  </div>
+  <label for="estado" class="col-md-2 control-label">Nombre:</label>
+  <div class="col-sm-3">
+    <select class="form-control" id="id_tramite" name="id_tramite" [(ngModel)]="model.id_tramite">
+       <!--<option selected>Seleccione.....</option>-->
+       <option *ngFor="let tipos of tramites" [value]="tipos.id_tramite" >{{tipos.descripcion_tramite}}</option>
+     </select>
+  </div>
+  <div class="col-sm-2">
+    <!--
+    <button type="button" class="btn btn-primary" (click)="openXl(content)">Cerrar</button>
+    -->
+  </div>
+  <br>
+</div>
+<br>
+<div class="modal-footer"><!--pie de pagina-->
+  <!--
+  <button type="button" class="btn btn-light" (click)="openXl(content)">Cerrar</button>
+  -->
+
+  <button type="button" (click)="agregar()" class="btn btn-primary">REGISTRAR</button>
+</div><!--Fin pie de pagina-->
+  
+  <h1>Registros realizados</h1>
+
+  <form>
+    <!--
+    <div class="form-group form-inline">
+    -->
+    <div class="form-group">
+        Busqueda a Full: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    <br>
+    <div class="card">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col"># Registro</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col" >Apellido</th>
+        <th scope="col" >D. Identidad</th>
+        <th scope="col" >Tramite</th>
+        <th scope="col" >Fecha Inicio</th>
+        <th scope="col" >Fecha Final</th>       
+        <!--
+        <th scope="col" sortable="password" (sort)="onSort($event)">Password</th>
+        <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Estado Usuario</th>
+        -->
+
+        <th ><i class="fas fa-align-center">Acciones</i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let country of countries$ | async">
+        <th scope="row">{{ country.id_registro }}</th>
+        <td>
+          <!--
+          <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+          -->
+          <ngb-highlight [result]="country.nombre" [term]="service.searchTerm"></ngb-highlight>
+        </td>
+        <!--
+        <td><ngb-highlight [result]="country.id_tramite | number" [term]="service.searchTerm"></ngb-highlight></td>
+        -->
+        <td><ngb-highlight [result]="country.apellido_paterno " [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.documento_identidad" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.descripcion_tramite" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.fecha_inicio" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.fecha_final" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><span class="pull-right">
+         <!--
+        <a class='btn btn-secundary' title='Editar Datos Personas' (click)="openLg(EditarPersona, country.id_institucion);"><i class="bi bi-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+          
+        </svg></i></a>
+        --> 
+  
+        <a class='btn btn-secundary' title='Eliminar Datos Personas' (click)="eliminar(country.id_registro);" ><i class="bi bi-x-circle-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+        </svg></i></a> 
+  
+      </span></td>
+        <!--
+        <td><button (click)="openLg(content2, country)" type="button" class="btn btn-primary">Normal1</button></td>
+        -->
+        <!--
+        <td><button (click)="eliminar(country.id)" type="button" class="btn btn-danger">Eliminar</button></td>
+        -->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+  
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </form>
+
+
+  </div>
+  <!--###########----FINAL DE FORMULARIO PRINCIPAL---------########-->  
+  

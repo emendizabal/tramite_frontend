@@ -1,0 +1,46 @@
+<div class="container">
+    <p>MODIFICAR EQUIPO</p>
+    <div class="rows">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">ID de Usuario</label>
+                    <input [(ngModel)]="equipos[0].id_usuario" type="text" class="form-control" name="id_usuario" readonly>
+                    <label class="form-label">Nombre de Usuario</label>
+                    <input [(ngModel)]="equipos[0].username" type="text" class="form-control" name="username">
+                    <label class="form-label">Password</label>
+                    <input [(ngModel)]="equipos[0].password" type="text" class="form-control" name="password">
+                    <label class="form-label">Estado  de Usuario</label>
+                    <input [(ngModel)]="equipos[0].estado_usuario" type="text" class="form-control" name="estado_usuario">
+                    <label class="form-label">Fecha</label>
+                    <input [(ngModel)]="equipos[0].fecha" type="text" class="form-control" name="fecha">
+                    <label class="form-label">ID Persona Usuario</label>
+                    <input [(ngModel)]="equipos[0].id_persona_usuario" type="text" class="form-control" name="id_persona_usuario">
+                    <label class="form-label">Permiso</label>
+                    <input [(ngModel)]="equipos[0].permiso" type="text" class="form-control" name="permiso">
+                </div>
+                <!--
+                <div class="mb-3">
+                    <label class="form-label">Password de Usuario</label>
+                    <input [(ngModel)]="equipos[0].password" type="text" class="form-control" name="password">
+                </div>
+                -->
+            <br>
+                <button (click)="modificar()" class="btn btn-primary">GUARDAR</button>
+            </form>
+        </div>
+    </div> 
+    
+    <div class="col-sm-6">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">{{equipos[0].username}}</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{{equipos[0].password}}</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

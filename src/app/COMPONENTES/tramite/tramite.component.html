@@ -1,0 +1,445 @@
+  <!--Inicio del Modal EditarArea -->
+  <ng-template #EditarArea let-modal>
+    <div class="modal-header"><!--Encabezado de pagina-->
+      <h4 class="modal-title">ACTUALIZAR DATOS AREA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><!--Fin encabezado de pagina-->
+
+    <div class="modal-body"><!--Cuerpo de pagina-->
+    <!--
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+    -->
+    <form>
+      
+      <p>Actualizar los datos&hellip;</p>
+        <div class="form-group row">
+          <input class="form-control" type="text" name="id_tramite" [(ngModel)]="nuevo_tramite_area.id_tramite">
+
+          <label for="estado" class="col-md-2 control-label">Nombre Area:</label>
+          <div class="col-sm-3">
+            <select class="form-control" name="id_area" [(ngModel)]="nuevo_tramite_area.id_area">
+              <!--<option selected>Seleccione.....</option>-->
+              <option *ngFor="let tipos of area" [value]="tipos.id_area" >{{tipos.nombre_area}}</option>
+            </select>
+          </div>
+          <br>
+        
+          <label for="estado" class="col-md-2 control-label">Numero Paso:</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" name="numero_paso" [(ngModel)]="nuevo_tramite_area.numero_paso">
+        </div>
+
+      </div>
+
+    <div class="modal-footer"><!--pie de pagina-->
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <!--
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      <button type="submit" class="btn btn-primary" id="actualizar_cliente">Guardar datos</button>
+      -->
+      <button type="button"  class="btn btn-primary" (click)="agregar_tramite_area()">GUARDAR</button>
+    </div><!--Fin pie de pagina-->
+    
+    </form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">item</th>
+          <!--
+          <th scope="col">Id Tramite</th>
+          -->
+          <th scope="col">Nro. Paso</th>
+          <th scope="col">Nombre Area</th>
+          <th scope="col">Descripcion Area</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equi of tramite_area; index as i">    
+          <th>{{i+1}}</th>
+          <th>{{equi.numero_paso}}</th>
+          <th>{{equi.nombre_area}}</th>
+          <td>{{equi.descripicion_area}}</td>
+          <!--
+          <td>
+              <button (click)="modificar()" type="button" class="btn btn-primary">Editar</button>
+          </td>
+          <td>
+              <button (click)="eliminar(equi.id_tramite)" type="button" class="btn btn-danger">Eliminar</button>
+          </td>
+          -->
+        </tr>     
+      </tbody>
+  </table>
+    <pre>
+      <!--
+      {{tramite_area | json}}
+      -->
+    </pre>
+</div>
+</ng-template>
+<!--Fin del Modal EditarArea-->
+
+<!--Inicio del Modal EditarRequisitos -->
+<ng-template #EditarRequisitos let-modal>
+  <div class="modal-header"><!--Encabezado de pagina-->
+    <h4 class="modal-title">ACTUALIZAR DATOS REQUISITOS</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><!--Fin encabezado de pagina-->
+
+  <div class="modal-body"><!--Cuerpo de pagina-->
+  <!--
+  <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+  -->
+  <form>
+    
+    <p>Actualizar los datos&hellip;</p>
+      <div class="form-group row">
+
+        <input class="form-control" type="text" name="id_tramite" [(ngModel)]="nuevo_tramite_requisito.id_tramite">
+
+        <label for="estado" class="col-md-2 control-label">Nombre Requisito:</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="id_requisito" [(ngModel)]="nuevo_tramite_requisito.id_requisito">
+            <!--<option selected>Seleccione.....</option>-->
+            <option *ngFor="let tipos of requisito" [value]="tipos.id_requisitos" >{{tipos.nombre_requisitos}}</option>
+          </select>
+        </div>
+        <br>
+      <!--
+        <label for="estado" class="col-md-2 control-label">Numero Paso:</label>
+      <div class="col-sm-1">
+        <input type="text" class="form-control" name="numero_paso" [(ngModel)]="nuevo_tramite_area.numero_paso">
+      </div>
+      -->
+    </div>
+
+  <div class="modal-footer"><!--pie de pagina-->
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <!--
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary" id="actualizar_cliente">Guardar datos</button>
+    -->
+    <button type="button"  class="btn btn-primary" (click)="agregar_tramite_requisitos()">GUARDAR</button>
+  </div><!--Fin pie de pagina-->
+  
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">item</th>
+        <th scope="col">Nombre Area</th>
+        <th scope="col">Descripcion Area</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let equi of tramite_requisito; index as i">    
+        <th>{{i+1}}</th>
+        <th>{{equi.nombre_requisitos}}</th>
+        <td>{{equi.descripicion_requisitos}}</td>
+        <!--
+        <td>
+            <button (click)="modificar()" type="button" class="btn btn-primary">Editar</button>
+        </td>
+        <td>
+            <button (click)="eliminar(equi.id_tramite)" type="button" class="btn btn-danger">Eliminar</button>
+        </td>
+        -->
+      </tr>     
+    </tbody>
+</table>
+  <pre>
+    <!--
+    {{tramite_area | json}}
+    -->
+  </pre>
+</div>
+</ng-template>
+<!--Fin del Modal EditarArea-->
+
+
+
+
+
+
+
+
+<!--INICIO DE FORMULARIO NUEVA PERSONA-->
+<ng-template #NuevaPersona let-modal>
+  <div class="modal-header"><!--Encabezado de pagina-->
+    <h4 class="modal-title">Registrar Nueva Institucion</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><!--Fin encabezado de pagina-->
+  <div class="modal-body"><!--Cuerpo de pagina-->
+  <!--
+  <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+  -->
+  <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+    
+    <p>Registro Institucion&hellip;</p>
+
+    <div class="mb-3">
+      <label class="form-label">Nombre de Institucion</label>
+      <input  type="text" [(ngModel)]="personal.nombre" class="form-control" name="nombre">
+  </div>
+  <div class="col-sm-6">
+    <div class="col-sm-6">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">{{personal.descripcion}}</label>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label for="estado" class="col-sm-6 control-label">Tipo de Institucion</label>
+      <div class="col-sm-8">
+       <select class="form-control" id="id_tipo_institucion" name="id_tipo_institucion">
+          <!--<option selected>Seleccione.....</option>-->
+          <option *ngFor="let tipos of tipo" [value]="tipos.id_tipo_institucion" >{{tipos.descripcion}}</option>
+        </select>
+      </div>
+    </div>
+  <div class="modal-footer"><!--pie de pagina-->
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" (click)="agregar()" class="btn btn-primary">REGISTRAR</button>
+  </div><!--Fin pie de pagina-->
+  </form>
+
+
+</div>
+</ng-template>
+<!--FIN DE FORMULARIO NUEVA PERSONA-->
+ 
+
+<!--INICIO DE FORMULARIO NUEVA PERSONA-->
+<ng-template #content let-modal>
+<form>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p>One fine body&hellip;</p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+    <div class="card">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <!--
+            <th scope="col">#</th>
+            <th scope="col" sortable="username" (sort)="onSort($event)">Country</th>
+            <th scope="col" sortable="password" (sort)="onSort($event)">Area</th>
+            <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Population</th>
+            -->        
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let country of countries$ | async">
+            <th scope="row">{{ country.id_tramite }}</th>
+            <td>
+              <!--
+              <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+              -->  
+              <ngb-highlight [result]="country.descripcion_tramite" [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            
+            <td><ngb-highlight [result]="country.costo_tramite | number" [term]="service.searchTerm"></ngb-highlight></td>
+            <!--
+            <td><ngb-highlight [result]="country.estado_usuario | number" [term]="service.searchTerm"></ngb-highlight></td>
+            -->  
+            <td><button (click)="modificar()" type="button" class="btn btn-primary">Editar</button></td>
+            <!--
+            <td><button (click)="openXl(content)" type="button" class="btn btn-outline-primary mb-2 mr-2">Extra large modal</button></td>
+            -->
+            <td><button (click)="openXl(content)" type="button" class="btn btn-primary">Extra</button></td>
+            <!--
+            <td><button (click)="eliminar(country.id)" type="button" class="btn btn-danger">Eliminar</button></td>
+            -->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination>
+          [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+          <option [ngValue]="2">2 items per page</option>
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="6">6 items per page</option>
+        </select>
+      </div>
+</form>
+</ng-template>
+<!--FIN DE FORMULARIO NUEVA PERSONA-->
+
+<!--Inicio del Modal EditarPersona -->
+<ng-template #EditarPersona let-modal>
+    <div class="modal-header"><!--Encabezado de pagina-->
+      <h4 class="modal-title">Actualizar datos Institucion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><!--Fin encabezado de pagina-->
+
+    <div class="modal-body"><!--Cuerpo de pagina-->
+    <!--
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+    -->
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+      
+      <p>Actualizar los datos&hellip;</p>
+      <!--
+        <div id="resultados_ajax_editar_cli"></div>
+        -->    
+        <div class="form-group">
+            <label for="nombre" class="col-sm-2 control-label">Id Institucion</label>
+            <input class="form-control" type="text" id="id_institucion" name="id_institucion" [(ngModel)]="equipos[0].id_tramite" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre" class="col-sm-3 control-label">Nombre Institucion</label>
+            <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="equipos[0].descripcion_tramite">
+        </div>
+        
+        <div class="form-group">
+            <label for="nombre" class="col-sm-3 control-label">Tipo de Institucion</label>
+            <input class="form-control" type="text" id="id_tipo_institucion" name="id_tipo_institucion" [(ngModel)]="equipos[0].costo_tramite" readonly>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Hola Mundo</label>   
+          <label class="form-label">{{equipos[0].descripcion_tramite}}</label>   
+        </div>
+
+        <pre>
+          <!--
+          {{countries$ | json}}
+          -->
+        </pre>
+
+    <div class="modal-footer"><!--pie de pagina-->
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <!--
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      <button type="submit" class="btn btn-primary" id="actualizar_cliente">Guardar datos</button>
+      -->
+      <button type="button"  class="btn btn-primary" (click)="modificar()">GUARDAR</button>
+    </div><!--Fin pie de pagina-->
+    
+    </form>
+</div>
+</ng-template>
+<!--Fin del Modal EditarPersona-->
+
+<!--###########----INICIO FORMULARIO PRINCIPAL---------########-->  
+<div class="col-md-10 mx-auto">
+<p>INSTITUCIONES </p>
+<p>Buscar Instituciones:</p>
+
+<ul>
+  <li>Aqui se registra las diferentes instituciones a las que pertenecen las personas</li>
+  <li>Buscar instituciones creadas</li>
+</ul>
+
+<div class="form-group row">
+  <label for="estado" class="col-md-2 control-label"><p class="text-end">Nombre Tramite:</p></label>
+  <div class="col-sm-2">
+    <input  type="text" [(ngModel)]="tramite_nuevo.descripcion_tramite" class="form-control" name="descripcion_tramite">
+  </div>
+  <label for="estado" class="col-md-2 control-label"><p class="text-end">Costo Tramite:</p></label>
+  <div class="col-sm-2">
+    <input  type="text" [(ngModel)]="tramite_nuevo.costo_tramite" class="form-control" name="costo_tramite">
+  </div>
+</div>
+
+
+
+<!--Mediante este boton accedemos al formulario para añadir nueva persona-->
+<div class="modal-footer">
+<div class="form-group row">
+<!--
+<button class="btn btn-primary mb-2 mr-2" (click)="openMostrarPersona(NuevaPersona)">Nuevo Personal</button>
+-->
+<button type="button"  class="btn btn-primary" (click)="agregar()">NUEVO TRAMITE</button>
+</div>
+</div>
+<!--INICION TABLA ASYNCRONA-->
+<form>
+  <div class="form-group form-inline">
+      Busqueda Instituciones: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+  <div class="card">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" >Descricpion</th>
+      <th scope="col" >Costo Tramite</th>
+      <!--
+      <th scope="col" sortable="descripcion" (sort)="onSort($event)">Descripcion</th>
+      <th scope="col" sortable="password" (sort)="onSort($event)">Password</th>
+      <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Estado Usuario</th>
+      -->
+      <th ><i class="fas fa-align-center">Acciones</i></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries$ | async">
+      <th scope="row">{{ country.id_tramite }}</th>
+      <td><ngb-highlight [result]="country.descripcion_tramite" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.costo_tramite | number" [term]="service.searchTerm"></ngb-highlight></td>
+      <!--
+      <td><ngb-highlight [result]="country.descripcion" [term]="service.searchTerm"></ngb-highlight></td>
+      -->
+      <td><span class="pull-right">
+            <!--
+            <a class='btn btn-secundary' title='Editar Datos Personas' (click)="openLg(EditarPersona, country.id_tramite);"><i class="bi bi-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+              </svg></i></a>
+            -->
+            <a class='btn btn-secundary' title='Editar Requisitos' (click)="openTramiteArea(EditarArea, country.id_tramite);"><i class="bi bi-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+            </svg></i></a>
+            <a class='btn btn-secundary' title='Editar Areas' (click)="openTramiteRequisito(EditarRequisitos, country.id_tramite);"><i class="bi bi-x-circle-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-post-fill" viewBox="0 0 16 16">
+            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4.5 3h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h7a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5z"/>
+            </svg></i></a>       
+            <a class='btn btn-secundary' title='Eliminar Datos Personas' (click)="eliminar(country.id_tramite);" ><i class="bi bi-x-circle-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg></i></a> 
+          </span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</form>
+</div>
+<!--###########----FINAL DE FORMULARIO PRINCIPAL---------########-->  

@@ -1,0 +1,543 @@
+<p>tipo-institucion works!</p>
+<!--INICIO DE FORMULARIO NUEVA PERSONA-->
+<ng-template #NuevaPersona let-modal>
+    <div class="modal-header"><!--Encabezado de pagina-->
+      <h4 class="modal-title">Registrar Nueva Persona </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><!--Fin encabezado de pagina-->
+    <div class="modal-body"><!--Cuerpo de pagina-->
+    <!--
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+    -->
+    <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+      
+      <p>Registro de Persona&hellip;</p>
+  
+      <div class="mb-3">
+        <label class="form-label">Nombre de Usuario</label>
+        <input  type="text" [(ngModel)]="personal.descripcion" class="form-control" name="descripcion">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password de Usuario</label>
+        <input  type="text" [(ngModel)]="personal.password" class="form-control" name="password">
+    </div>
+    <!--
+    <div class="mb-3">
+        <label class="form-label">Estado Usuario</label>
+        <input  type="text" [(ngModel)]="equipos.estado_usuario" class="form-control" name="estado_usuario">
+    </div>
+    -->
+    <div class="mb-3">
+        <label for="inputState">Estado Usuario</label>
+  
+        <select name="estado_usuario" class="form-control" [(ngModel)]="personal.estado_usuario">
+          <option selected value="Activo">Activo</option>
+          <option value="Desactivado">Desactivado</option>
+        </select>
+    </div>
+  
+    <div class="mb-3">
+        <label class="form-label">Password de Usuario</label>
+        <input  type="date" [(ngModel)]="personal.fecha" class="form-control" name="fecha">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Seleccion un ID de Persona</label>
+        <input [(ngModel)]="personal.id_persona_usuario" type="text" class="form-control" name="id_persona_usuario">
+    </div>
+  
+    <div class="col-sm-6">
+      <div class="col-sm-6">
+          <form>
+              <div class="mb-3">
+                  <label class="form-label">{{personal.descripcion}}</label>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">{{personal.password}}</label>
+              </div>
+          </form>
+      </div>
+    </div>
+  
+  
+        <!--
+          
+        <div id="resultados_ajax_editar_cli"></div>
+        -->    
+        <!--
+        <div class="form-group">
+            <label for="nombre" class="col-sm-2 control-label">Id Usuario</label>
+            <input class="form-control" type="text" id="id_usuario" name="id_usuario" [(ngModel)]="equipos[0].id_usuario" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="nombre" class="col-sm-3 control-label">Nombre Usuario</label>
+            <input class="form-control" type="text" id="username" name="username" [(ngModel)]="nPersona[0].username">
+        </div>
+        
+        <div class="form-group">
+            <label for="nombre" class="col-sm-3 control-label">Password</label>
+            <input class="form-control" type="text" id="password" name="password" [(ngModel)]="nPersona[0].password">
+        </div>
+        -->
+        <!--
+        <div class="form-group">
+            <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" id="ecli_nombre" name="ecli_nombre"  [value]="name" ></textarea>
+            </div>
+        </div>
+        -->  
+        <!--
+        <div class="form-group">
+            <label for="estado" class="col-sm-3 control-label">Estado</label>
+            <div class="col-sm-8">
+             <select class="form-control" id="estado_usuario" name="estado_usuario"  required>
+                <option value="1" selected>Activado</option>
+                <option value="0">Desactivado</option>
+              </select>
+            </div>
+        </div>  
+        -->                                  
+        
+        <!--
+        <div class="form-group">
+          <label for="estado" class="col-sm-3 control-label">Estado</label>
+          
+            <select class="form-control" id="estado" name="estado" [(ngModel)]="nPersona[0].estado_usuario"  required>
+              
+              <option selected>Seleccione.....</option>
+              
+              <option value="Activo" selected>Activo</option>
+  
+              <option [(ngModel)]="nPersona[0].estado_usuario" value="No Activo" >No Activo</option>
+            </select>
+          
+        </div>
+        -->
+        <!--
+        <div class="form-group">
+          <label for="estado" class="col-sm-3 control-label">Persona</label>
+          <div class="col-sm-8">
+           <select class="form-control" id="ecli_estado2" name="ecli_estado2" required>
+              <option selected>Seleccione.....</option>
+              <option *ngFor="let nombre of countries$ | async " [value]="nombre.username" >{{nombre.username}}</option>
+            </select>
+          </div>
+        </div>
+        -->
+        <!--
+        <div class="form-group">
+          <label for="estado" class="col-sm-3 control-label">Persona</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="ecli_estado1" name="ecli_estado1" required>
+              
+              <option selected>Seleccione.....</option>
+              
+              <option [(ngModel)]="nPersona[0].estado_usuario" value="Activo" selected>Activo</option>
+              <option [(ngModel)]="nPersona[0].estado_usuario" value="No Activo" >No Activo</option>
+            </select>
+          </div>
+        </div> 
+        -->
+  
+    <div class="modal-footer"><!--pie de pagina-->
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+      <button type="button" (click)="agregar()" class="btn btn-primary">REGISTRAR</button>
+    </div><!--Fin pie de pagina-->
+    </form>
+  
+  
+  </div>
+  </ng-template>
+  <!--FIN DE FORMULARIO NUEVA PERSONA-->
+  
+  
+  
+  
+  <!--INICIO DE FORMULARIO NUEVA PERSONA-->
+  <ng-template #content let-modal>
+  <form>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+  
+      <div class="card">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <!--
+              <th scope="col">#</th>
+              <th scope="col" sortable="username" (sort)="onSort($event)">Country</th>
+              <th scope="col" sortable="password" (sort)="onSort($event)">Area</th>
+              <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Population</th>
+              -->        
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries$ | async">
+              <th scope="row">{{ country.id_tipo_institucion }}</th>
+              <td>
+                <!--
+                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+                -->  
+                <ngb-highlight [result]="country.descripcion" [term]="service.searchTerm"></ngb-highlight>
+              </td>
+              <!--
+              <td><ngb-highlight [result]="country.password | number" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="country.estado_usuario | number" [term]="service.searchTerm"></ngb-highlight></td>
+              -->  
+              <td><button (click)="modificar()" type="button" class="btn btn-primary">Editar</button></td>
+              <!--
+              <td><button (click)="openXl(content)" type="button" class="btn btn-outline-primary mb-2 mr-2">Extra large modal</button></td>
+              -->
+              <td><button (click)="openXl(content)" type="button" class="btn btn-primary">Extra</button></td>
+              <!--
+              <td><button (click)="eliminar(country.id)" type="button" class="btn btn-danger">Eliminar</button></td>
+              -->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination>
+            [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+          </ngb-pagination>
+  
+          <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div>
+  </form>
+  </ng-template>
+  <!--FIN DE FORMULARIO NUEVA PERSONA-->
+  
+  <!--Inicio del Modal EditarPersona -->
+  <ng-template #EditarPersona let-modal>
+      <div class="modal-header"><!--Encabezado de pagina-->
+        <h4 class="modal-title">Modales Cambiar el Usuario </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div><!--Fin encabezado de pagina-->
+  
+      <div class="modal-body"><!--Cuerpo de pagina-->
+      <!--
+      <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+      -->
+      <form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+        
+        <p>One fine body&hellip;</p>
+        <!--
+          <div id="resultados_ajax_editar_cli"></div>
+          -->    
+          <div class="form-group">
+              <label for="nombre" class="col-sm-2 control-label">Id Usuario</label>
+              <input class="form-control" type="text" id="id_usuario" name="id_usuario" [(ngModel)]="equipos[0].id_tipo_institucion" readonly>
+          </div>
+  
+          <div class="form-group">
+              <label for="nombre" class="col-sm-3 control-label">Nombre Usuario</label>
+              <input class="form-control" type="text" id="username" name="username" [(ngModel)]="equipos[0].descripcion">
+          </div>
+          
+          <div class="form-group">
+              <label for="nombre" class="col-sm-3 control-label">Password</label>
+              <input class="form-control" type="text" id="password" name="password" [(ngModel)]="equipos[0].descripcion">
+          </div>
+          <!--
+          <div class="form-group">
+              <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+              <div class="col-sm-8">
+                  <textarea class="form-control" id="ecli_nombre" name="ecli_nombre"  [value]="name" ></textarea>
+              </div>
+          </div>
+          -->                              
+          <div class="form-group">
+              <label for="estado" class="col-sm-3 control-label">Estado</label>
+              <div class="col-sm-8">
+               <select class="form-control" id="ecli_estado" name="ecli_estado" required>
+                  <option value="1" selected>Habilitado</option>
+                  <option value="0">Deshabilitado</option>
+                </select>
+              </div>
+          </div>  
+          <!--
+          <div class="form-group">
+            <label for="estado" class="col-sm-3 control-label">Estado</label>
+            <div class="col-sm-8">
+             <select class="form-control" id="ecli_estado1" name="ecli_estado1" required>
+                <option selected>Seleccione.....</option>
+                <option [(ngModel)]="equipos[0].estado_usuario" value="Activo" >Activo</option>
+                <option [(ngModel)]="equipos[0].estado_usuario" value="NoActivo" >NoActivo</option>
+              </select>
+            </div>
+          </div> 
+          -->
+  
+          <div class="form-group">
+            <label for="estado" class="col-sm-3 control-label">Estado</label>
+            <div class="col-sm-8">
+             <select class="form-control" id="ecli_estado2" name="ecli_estado2" required>
+                <option selected>Seleccione.....</option>
+                <option *ngFor="let nombre of countries$ | async " [value]="nombre.descripcion" >{{nombre.descripcion}}</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Hola Mundo</label>   
+            <label class="form-label">{{equipos[0].descripcion}}</label>   
+          </div>
+  
+          <pre>
+            <!--
+            {{countries$ | json}}
+            -->
+          </pre>
+  
+      <div class="modal-footer"><!--pie de pagina-->
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <!--
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" id="actualizar_cliente">Guardar datos</button>
+        -->
+        <button type="button"  class="btn btn-primary" (click)="modificar()">GUARDAR</button>
+      </div><!--Fin pie de pagina-->
+      
+      </form>
+  </div>
+  </ng-template>
+  <!--Fin del Modal EditarPersona-->
+  
+  
+  <ng-template #content1 let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+        <div class="container">
+          <p>AGREGAR USUARIO</p>
+          <div class="rows">
+              <div class="col-sm-6">
+                  <form>
+                      <div class="mb-6">
+                          <label class="form-label">Nombre de Usuario</label>
+                          <input  type="text"  class="form-control" name="username">
+                      </div>
+                      <div class="mb-6">
+                          <label class="form-label">Password de Usuario</label>
+                          <input  type="text" class="form-control" name="password">
+                      </div>
+                      <!--
+                      <div class="mb-3">
+                          <label class="form-label">Estado Usuario</label>
+                          <input  type="text" [(ngModel)]="equipos.estado_usuario" class="form-control" name="estado_usuario">
+                      </div>
+                      -->
+                      <div class="form-group col-md-6">
+                          <label for="inputState">Estado Usuario</label>
+      
+                          <select id="estado_usuario" name="estado_usuario" class="form-control">
+                            <option selected value="Activo">Activo</option>
+                            <option value="Desactivado">Desactivado</option>
+                          </select>
+                      </div>
+                      <div class="mb-6">
+                          <label class="form-label">Password de Usuario</label>
+                          <input  type="date" class="form-control" name="fecha">
+                      </div>
+                      
+                      <div class="mb-6">
+                          <label class="form-label">Seleccion un ID</label>
+                          <input type="text" class="form-control" name="id_persona_usuario">
+                      </div>
+                      
+                      <button class="btn btn-primary">AGREGAR</button>
+                  </form>
+              </div>
+          </div>
+  
+      </div>
+  
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+  </ng-template>
+  
+  
+  
+  
+  
+    <ng-template #longContent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+  
+  <!--###########----INICIO FORMULARIO PRINCIPAL---------########-->  
+  <div class="col-md-10 mx-auto">
+  <p>PERSONA </p>
+  <p>This is a more complete example with a service that simulates server calling:</p>
+  
+  <ul>
+    <li>an observable async service to fetch a list of countries</li>
+    <li>sorting, filtering and pagination</li>
+    <li>simulated delay and loading indicator</li>
+    <li>debouncing of search requests</li>
+  </ul>
+  
+  <!--Mediante este boton accedemos al formulario para añadir nueva persona-->
+  <button class="btn btn-primary mb-2 mr-2" (click)="openMostrarPersona(NuevaPersona)">Nuevo Personal</button>
+  <!--
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openSm(content)">Small modal</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openXl(content)">Extra large modal</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openScrollableContent(longContent)">Modal scrollable content</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openModalDialogCustomClass(content)">Modal with dialog custom class</button>
+  -->
+  <form>
+    <div class="form-group form-inline">
+        Busqueda a Full: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    <div class="card">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" >Descripcion</th>
+        
+        <!--
+        <th scope="col" sortable="descripcion" (sort)="onSort($event)">Descripcion</th>
+        -->
+        
+        <!--
+        <th scope="col" sortable="password" (sort)="onSort($event)">Password</th>
+        <th scope="col" sortable="estado_usuario" (sort)="onSort($event)">Estado Usuario</th>
+        -->
+
+        <th ><i class="fas fa-align-center">Acciones</i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let country of countries$ | async">
+        <th scope="row">{{ country.id_tipo_institucion }}</th>
+        <td>
+          <!--
+          <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+          -->
+          <ngb-highlight [result]="country.descripcion" [term]="service.searchTerm"></ngb-highlight>
+  
+        </td>
+        <!--
+        <td><ngb-highlight [result]="country.password" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.estado_usuario" [term]="service.searchTerm"></ngb-highlight></td>
+        -->
+        <!--
+        <td><button (click)="modificar()" type="button" class="btn btn-primary">Editar</button></td>
+        
+        <td><button (click)="openXl(content)" type="button" class="btn btn-outline-primary mb-2 mr-2">Extra large modal</button></td>
+        -->
+        <!--
+        <td><button (click)="openXl(content)" type="button" class="btn btn-primary">Extra</button></td>
+        <td><button (click)="openSm(content1)" type="button" class="btn btn-primary">Normal</button></td>
+        
+        <td><button (click)="openLg(EditarPersona, country.id)" type="button" class="btn btn-primary">Actualizar</button></td>
+        -->
+        <td><span class="pull-right">
+        
+        <a class='btn btn-secundary' title='Editar Datos Personas' (click)="openLg(EditarPersona, country.id_tipo_institucion);"><i class="bi bi-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+        </svg></i></a>
+  
+        <!--
+        <a class='btn btn-secundary' title='Editar Datos Personas' (click)="openLg(EditarPersona, country.id);"><i class="bi bi-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16"><path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></i></a>
+        -->
+        <!--
+        <a class='btn btn-secundary' title='Mostrar Datos Personas' (click)="openLg(EditarPersona, country.id_usuario);" ><i class="bi bi-x-circle-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-post-fill" viewBox="0 0 16 16">
+          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4.5 3h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h7a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5z"/>
+        </svg></i></a> 
+        -->
+  
+        <a class='btn btn-secundary' title='Eliminar Datos Personas' (click)="eliminar(country.id_tipo_institucion);" ><i class="bi bi-x-circle-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+        </svg></i></a> 
+  
+      </span></td>
+        <!--
+        <td><button (click)="openLg(content2, country)" type="button" class="btn btn-primary">Normal1</button></td>
+        -->
+        <!--
+        <td><button (click)="eliminar(country.id)" type="button" class="btn btn-danger">Eliminar</button></td>
+        -->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+  
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </form>
+  </div>
+  <!--###########----FINAL DE FORMULARIO PRINCIPAL---------########-->  
+  

@@ -1,0 +1,158 @@
+<p>usuario works!</p>
+
+<!--<ng-template [ngTemplateOutlet]="outlet" [ngOutletContext]="context">-->
+    <ng-template #contenido let-modal>
+        <div class="modal fade bs-example-modal-lg" id="myRegistrarLotes" tabindex="-1"  aria-labelledby="myModalLabel">
+          <!-- <div class="modal-dialog modal-lg" role="document"> -->
+          <div class="modal-dialog modal-lg" role="document">	
+        
+            <div class="modal-content">
+              <!--Encabezado-->	
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Buscar Productos para la asignacion de lotes</h4>
+              </div><!--Fin de Encabezado-->	
+              <!--Cuerpo-->	
+              <div class="modal-body">
+                <!--Formulario-->	
+              <form class="form-horizontal">
+        
+                <div class="form-group row">
+                  <label for="q" class="col-md-1 control-label">Nombres:</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="qp" placeholder="Nombre" onkeyup='productos(1);'>
+                  </div>														
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-default" onclick='productos(1);'>
+                      <span class="glyphicon glyphicon-search" ></span> Buscar</button><span id="loader"></span>
+                  </div>							
+                </div>
+        
+                <div class="form-group row">			
+                  <label for="mail" class="col-md-1 control-label">Estado</label>
+                      <div class="col-md-2">
+                        <select class='form-control input-sm' id="bestado" 
+                        onchange='productos(1);'>
+                          <option value="0">Deshabilitado</option>
+                          <option selected="" value="1">Habilitado</option>
+                          <option value="2">Todos</option>			
+                        </select>
+                      </div>
+                  <label for="mail" class="col-md-1 control-label">Categoria</label>
+                      <div class="col-md-3">
+                        <select class='form-control input-sm' id="categoria">
+                          <option selected='' value="0">Nombre Generico</option>
+                          <option value="1">Laboratorio</option>
+                          <option value="2">Empaque</option>
+                          <option value="3">Clasificación</option>
+                          <option value="4">P. Activo</option>
+                        </select>
+                      </div>
+                  
+                      <div class="col-md-5">
+                        <input type="text" class="form-control input-sm" id="valor" onkeyup='productos(1);' placeholder="Escribir nombre">
+                      </div>
+                  </div>
+                  
+              </form><!--Fin de Formulario-->
+              <!--
+              <br><br><br><br><br>
+              -->
+              
+              <!--<div id="loader" style="position: absolute;	text-align: center;	top: 200px;	width: 100%;display:none;"></div>-->
+              
+              <!-- Carga gif animado -->
+              <!--Carga los datos de los productos buscados -->
+              <div class="outer_div1" ></div><!-- Datos ajax Final -->
+        
+              </div><!--Fin de Cuerpo-->
+              <!--Pie de Pagina-->
+              <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
+              </div>
+              <!--Fin de Pie de Pagina-->
+            </div>
+          </div>
+        </div>
+        </ng-template>
+        
+        
+        
+        <div class="container">
+        
+        <p>Usuarios</p>
+        <button routerLink="/add"  type="button" class="btn btn-primary">Agregar</button>
+        <br><br>
+        <!--<button type="button" class="btn btn-outline-danger" (click)="modal.open(contenido)">Abrir Ventana</button>-->
+        <br><br>
+        
+        <div class="btn-group pull-right">
+          <button type='button' class="btn btn-info" data-toggle="modal" data-target="#myRegistrarLotes"><span class="glyphicon glyphicon-plus" ></span> Nuevo Lote</button>
+        </div>
+        <!--
+        <div class="form-group row">
+          <br>
+          <label for="q" class="col-md-3 control-label">Nombre Usuario:</label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="qeo"  onkeyup='load(1);'>
+          </div>														
+          <div class="col-md-3">
+            <button type="button" class="btn btn-primary" onclick='load(1);'>
+              <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                <span id="loader"></span>
+          </div>							
+        </div>
+        -->
+
+
+        <br>
+        <!--
+        <div class="form-group row">			
+          <label for="mail" class="col-md-3 control-label">Estado de Usuario:</label>
+              <div class="col-md-2">
+                <select class='form-control input-sm' id="bestado" 
+                onchange='load(1);'>
+                  <option selected="" value="Activado">Activado</option>
+                  <option value="Desactivado">Desactivado</option>			
+                </select>
+              </div>
+        </div>
+        -->
+        
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">item</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Password</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let equi of ListaEquipos; index as i">    
+                <td>{{i+1}}</td>
+                <td>{{equi.id_usuario}}</td>
+                <td>{{equi.username}}</td>
+                <td>{{equi.password}}</td>
+                <td>{{equi.estado_usuario}}</td>
+                <td>{{equi.fecha}}</td>
+                <td>
+                    <button (click)="modificar(equi.id_usuario)" type="button" class="btn btn-primary">Editar</button>
+                </td>
+                <td>
+                    <button (click)="eliminar(equi.id_usuario)" type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+              </tr>     
+            </tbody>
+            <tr>
+              <td colspan=9><span class="pull-right">
+               paginate(let reload,let page,let total_pages,adjacents)
+              </span></td>
+            </tr>
+        </table>
+
+</div>

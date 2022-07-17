@@ -1,0 +1,66 @@
+<p>COMPONENTE AGREGAR</p>
+<div class="container">
+    <p>AGREGAR USUARIO</p>
+    <div class="rows">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Nombre de Usuario</label>
+                    <input  type="text" [(ngModel)]="equipos.username" class="form-control" name="username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password de Usuario</label>
+                    <input  type="text" [(ngModel)]="equipos.password" class="form-control" name="password">
+                </div>
+                <!--
+                <div class="mb-3">
+                    <label class="form-label">Estado Usuario</label>
+                    <input  type="text" [(ngModel)]="equipos.estado_usuario" class="form-control" name="estado_usuario">
+                </div>
+                -->
+                <div class="form-group col-md-4">
+                    <label for="inputState">Estado Usuario</label>
+
+                    <select id="estado_usuario" name="estado_usuario" class="form-control" [(ngModel)]="equipos.estado_usuario">
+                      <option selected value="Activo">Activo</option>
+                      <option value="Desactivado">Desactivado</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password de Usuario</label>
+                    <input  type="date" [(ngModel)]="equipos.fecha" class="form-control" name="fecha">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Seleccionar ID de Persona</label>
+                    <input [(ngModel)]="equipos.id_persona_usuario" type="text" class="form-control" name="id_persona_usuario">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="inputState">Tipo de Usuario</label>
+
+                    <select id="estado_usuario" name="estado_usuario" class="form-control" [(ngModel)]="equipos.permiso">
+                      <option selected value="Administracion">Administracion</option>
+                      <option value="Usuario">Usuario</option>
+                      <option value="Tramitante">Tramitante</option>
+                    </select>
+                </div>
+                <br>
+                <button (click)="agregar()" class="btn btn-primary">AGREGAR</button>
+            </form>
+        </div>
+    </div> 
+
+    <div class="col-sm-6">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">{{equipos.password}}</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{{equipos.username}}</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
